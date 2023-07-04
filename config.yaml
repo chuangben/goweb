@@ -1,0 +1,23 @@
+app:
+  name: "goweb"
+  mode: "dev"
+  port: 8081
+
+log:
+  level: "debug"
+  filename: "goweb.log"
+  max_size: 200
+  max_age: 30 
+  max_backups: 7
+
+mysql:
+  host: "127.0.0.1"
+  port: 13306
+  user: "root"
+  password: "123456"
+  dbname: "test"
+
+redis:
+  host: "127.0.0.1"
+  port: 16379
+  dbname: 0
