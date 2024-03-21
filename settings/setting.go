@@ -8,6 +8,8 @@ import (
 	"github.com/spf13/viper"
 )
 
+//test git
+
 func Init() (err error) {
 	viper.SetConfigFile("./config.yaml") // 指定配置文件路径
 	err := viper.ReadInConfig()          // 读取配置信息
