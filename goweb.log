@@ -1,0 +1,9 @@
+{"level":"debug","ts":"2024-03-21T20:39:49.220+0800","caller":"goweb/main.go:38","msg":"logger init success..."}
+{"level":"error","ts":"2024-03-21T20:39:49.220+0800","caller":"mysql/mysql.go:29","msg":"connect DB failed","error":"dial tcp 127.0.0.1:13306: connect: connection refused"}
+{"level":"debug","ts":"2024-03-21T20:40:53.848+0800","caller":"goweb/main.go:37","msg":"logger init success..."}
+{"level":"debug","ts":"2024-03-21T20:41:23.828+0800","caller":"goweb/main.go:36","msg":"logger init success..."}
+{"level":"info","ts":"2024-03-21T20:41:45.143+0800","caller":"logger/logger.go:96","msg":"/","status":200,"method":"GET","path":"/","query":"","ip":"119.147.10.206","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36","errors":"","cost":0.000061126}
+{"level":"info","ts":"2024-03-21T20:41:45.236+0800","caller":"logger/logger.go:96","msg":"/favicon.ico","status":404,"method":"GET","path":"/favicon.ico","query":"","ip":"119.147.10.206","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36","errors":"","cost":0.000000896}
+{"level":"info","ts":"2024-03-21T20:42:09.455+0800","caller":"logger/logger.go:96","msg":"/","status":200,"method":"GET","path":"/","query":"","ip":"119.147.10.206","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36","errors":"","cost":0.00002025}
+{"level":"info","ts":"2024-03-21T20:42:20.846+0800","caller":"goweb/main.go:75","msg":"Shutdown Server ..."}
+{"level":"info","ts":"2024-03-21T20:42:20.846+0800","caller":"goweb/main.go:84","msg":"Server exiting"}

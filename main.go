@@ -9,7 +9,6 @@ import (
 	"syscall"
 	"time"
 
-	"goweb/dao/redis"
 	"goweb/logger"
 	"goweb/routes"
 	"goweb/settings"
@@ -35,22 +34,20 @@ func main() {
 	defer zap.L().Sync()
 	// 程序能走到这里说明 zap 日志配置已经成功，下面的都可以使用 zap.L()
 	zap.L().Debug("logger init success...")
-
 	/*
-		// 3. 初始化 MySQL 连接
-		if err := mysql.Init(); err != nil {
-			fmt.Printf("init mysql failed, errL%v\n", err)
+			// 3. 初始化 MySQL 连接
+			if err := mysql.Init(); err != nil {
+				fmt.Printf("init mysql failed, errL%v\n", err)
+				return
+			}
+			defer mysql.Close()
+		// 4. 初始化 Redis 连接
+		if err := redis.Init(); err != nil {
+			fmt.Printf("init redis failed, err:%v\n", err)
 			return
 		}
-		defer mysql.Close()
+		defer redis.Close()
 	*/
-	// 4. 初始化 Redis 连接
-	if err := redis.Init(); err != nil {
-		fmt.Printf("init redis failed, err:%v\n", err)
-		return
-	}
-	defer redis.Close()
-
 	// 5. 注册路由
 	r := routes.Setup()
 
