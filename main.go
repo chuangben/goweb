@@ -9,42 +9,50 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/captainlee1024/web_app/dao/mysql"
-	"github.com/captainlee1024/web_app/dao/redis"
-	"github.com/captainlee1024/web_app/logger"
-	"github.com/m/settings"
+	"github.com/chuangben/goweb/dao/redis"
+	"github.com/chuangben/goweb/logger"
+	"github.com/chuangben/goweb/routes"
+	"github.com/chuangben/goweb/settings"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
 
 func main() {
-	//1 加载配置文件
+	// 1. 加载配置 一般会创建一个 settings 模块，使用 viper 去进行管理
 	if err := settings.Init(); err != nil {
-		fmt.Printf("init settings failed,err :%v\n ", err)
-
+		fmt.Printf("init settings failed, err:%v\n", err)
+		return
 	}
-	//2 初始化日志
-	if err := logger.Init(settings.Conf.LogConfig, settings.Conf.Mode); err != nil {
-		fmt.Printf("init logger failed,err :%v\n ", err)
+
+	// 2. 初始化日志
+	if err := logger.Init(); err != nil {
+		// zap 初始化失败，这里不能使用 zap.L() 进行记录
+		fmt.Printf("init logger failed, err:%v\n", err)
+		return
 	}
 	// 延迟调用 刷新日志到文件
 	defer zap.L().Sync()
 	// 程序能走到这里说明 zap 日志配置已经成功，下面的都可以使用 zap.L()
 	zap.L().Debug("logger init success...")
 
-	//3 初始化mysql
-	if err := mysql.Init(settings.Conf.MySQLConfig); err != nil {
-		fmt.Printf("init mysql failed,err :%v\n ", err)
-
-	}
-	defer mysql.Close()
-
-	//4 初始化redis
-	if err := redis.Init(settings.Conf.RedisConfig); err != nil {
-		fmt.Printf("init redis failed,err :%v\n ", err)
+	/*
+		// 3. 初始化 MySQL 连接
+		if err := mysql.Init(); err != nil {
+			fmt.Printf("init mysql failed, errL%v\n", err)
+			return
+		}
+		defer mysql.Close()
+	*/
+	// 4. 初始化 Redis 连接
+	if err := redis.Init(); err != nil {
+		fmt.Printf("init redis failed, err:%v\n", err)
+		return
 	}
 	defer redis.Close()
-	//5 注册路由
+
+	// 5. 注册路由
+	r := routes.Setup()
+
 	// 6. 启动服务（优雅关机和平滑重启）
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%d", viper.GetInt("app.port")),
