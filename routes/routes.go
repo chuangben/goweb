@@ -4,7 +4,8 @@ package routes
 import (
 	"net/http"
 
-	"github.com/captainlee1024/web_app/logger"
+	"goweb/logger"
+
 	"github.com/gin-gonic/gin"
 )
 

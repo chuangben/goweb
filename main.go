@@ -9,10 +9,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/chuangben/goweb/dao/redis"
-	"github.com/chuangben/goweb/logger"
-	"github.com/chuangben/goweb/routes"
-	"github.com/chuangben/goweb/settings"
+	"goweb/dao/redis"
+	"goweb/logger"
+	"goweb/routes"
+	"goweb/settings"
+
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
